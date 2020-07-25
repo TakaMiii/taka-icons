@@ -1,0 +1,24 @@
+<div class="icon-detail content-container">
+  <div>
+  	<form action="">
+  	  <input type="file"
+  	    id="uploading-img-input"
+  	    name="uploading-img-input"
+  	    accept="image/*"
+  	    class="hide"
+        (change)="preview($event.target.files)">
+      <button nz-button nzType="primary" type="button" (click)="selectImg()">Upload</button>
+  	</form>
+    <canvas id="img-canvas" class="js-canvas-upload canvas-upload" [width]="imgCanvas.width" [height]="imgCanvas.height" (click)="colorStraw($event)">
+    </canvas>
+  </div>
+  <div class="icon-container">
+    <div class="icon-tool-bar">
+      <input nz-input placeholder="HEX" [(ngModel)]="hexValue" />
+      <button nz-button nzType="default" (click)="downloadImg()">Download</button>
+    </div>
+    <div class="svg-icon">
+      <app-taka-icon [stroke]="hexValue"></app-taka-icon>
+    </div>
+  </div>
+</div>

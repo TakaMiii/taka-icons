@@ -1,0 +1,37 @@
+.icon-detail {
+	border: 0px solid #000;
+	display: flex;
+	justify-content: space-between;
+}
+
+.icon-container {
+   width: 30%;
+}
+
+.svg-icon {
+	width: 100%;
+	border: 1px solid hsla(0, 0%, 90%, 1);
+	border-radius: 30px;
+	margin: 3em 0;
+}
+
+.default-container {
+	margin: 3em 0;
+}
+
+.icon-tool-bar {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.icon-tool-bar button {
+	margin-left: 8px;
+}
+
+.canvas-upload {
+	margin: 3em 0;
+}
+
+.canvas-upload {
+	cursor: crosshair;
+}

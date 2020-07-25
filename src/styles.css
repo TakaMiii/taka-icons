@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~ng-zorro-antd/ng-zorro-antd.min.css";
+
+:root {
+  --primary-color: #FFD1C4;
+  --primary-text-color: #F8AF9A;
+  --dark-color: #3C3E4B;
+  --frame-color: hsla(0, 0%, 90%, 1);
+}
+
+a {
+	text-decoration:none;
+}
+
+ul, li {
+  list-style-type: none;
+ /* display: flex;
+  align-items: center;*/
+}
+
+.hide {
+	display: none;
+}
+
+.content-container {
+  margin: 32px calc(16.6% - 8px);
+}
+
+/*overwrite zn button*/
+.ant-btn:hover, .ant-btn:focus {
+	color: var(--primary-text-color) !important;
+}

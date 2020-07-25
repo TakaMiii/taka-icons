@@ -1,0 +1,33 @@
+.nav {
+	display: flex;
+	justify-content: flex-end;
+	padding: 16px;
+	border-bottom: 1px solid var(--frame-color)
+}
+
+.nav li {
+	position: relative;
+}
+
+.nav li>.decoration {
+	/*margin-right: 12px;*/
+	width: 15px;
+	height: 15px;
+	left: -30px;
+	top: 4px;
+	border-radius: 7px;
+	background-color: var(--primary-color);
+	position: absolute;
+	z-index: -1;
+}
+
+.nav li:hover .decoration {
+	width: 150%;
+
+}
+
+
+
+.nav-can-back {
+	justify-content: space-between;
+}
