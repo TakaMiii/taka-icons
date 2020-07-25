@@ -13,12 +13,12 @@ trigger('routeAnimations', [
   	  })
   	]),
   	query(':enter', [
-  	  style({ left: '-100%' })
+  	  style({ left: '100%' })
   	]),
   	query(':leave', animateChild()),
   	group([
   	  query(':leave', [
-  	    animate('500ms linear', style({ left: '100%' }))
+  	    animate('500ms linear', style({ left: '-100%' }))
   	  ]),
   	  query(':enter', [
   	    animate('500ms linear', style({ left: '0%' }))
@@ -37,12 +37,12 @@ trigger('routeAnimations', [
   	  })
   	]),
   	query(':enter', [
-  	  style({ left: '100%' })
+  	  style({ left: '-100%' })
   	]),
   	query(':leave', animateChild()),
   	group([
   	  query(':leave', [
-  	    animate('500ms linear', style({ left: '-100%' }))
+  	    animate('500ms linear', style({ left: '100%' }))
   	  ]),
   	  query(':enter', [
   	    animate('500ms linear', style({ left: '0%' }))
