@@ -29,7 +29,6 @@ export class IconDetailComponent implements OnInit {
 
   ngOnInit() {
     this.imgCanvas.img = document.querySelector(".js-canvas-upload")as HTMLElement;
-
   }
 
   selectImg(){

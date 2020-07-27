@@ -1,70 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { IconService } from '../icon.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-icons-list',
   template: `
-    <div class="items-list content-container">
-      <a *ngFor="let item of icons" class="item" [routerLink]="['/icon', item.id]">
-        <img src="{{ item.icon }}">
+    <div class="items-list content-container" *ngIf="icons">
+      <a *ngFor="let item of icons" class="item" [routerLink]="['/icon', item.id]" (click)="selectIcon(item.id)">
+        <div class="svg-icon" [innerHTML]="item.file"></div>
         <p>{{ item.name }}</p>
       </a>
     </div>
   `,
-  styleUrls: ['./icons-list.component.css']
+  styleUrls: ['./icons-list.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
+
 export class IconsListComponent implements OnInit {
-  //  這個data遲早要拆到service裡
-  icons=[
-    {
-      id: 1,
-      name: 'mountain',
-      icon: '../../assets/svg-icons/mountain.svg'
-    },
-    {
-      id: 2,
-      name: 'mountain',
-      icon: '../../assets/svg-icons/mountain.svg'
-    },
-    {
-      id: 3,
-      name: 'mountain',
-      icon: '../../assets/svg-icons/mountain.svg'
-    },
-    {
-      id: 4,
-      name: 'mountain',
-      icon: '../../assets/svg-icons/mountain.svg'
-    },
-    {
-      id: 5,
-      name: 'mountain',
-      icon: '../../assets/svg-icons/mountain.svg'
-    },
-    {
-      id: 6,
-      name: 'mountain',
-      icon: '../../assets/svg-icons/mountain.svg'
-    },
-    {
-      id: 7,
-      name: 'mountain',
-      icon: '../../assets/svg-icons/mountain.svg'
-    },
-    {
-      id: 8,
-      name: 'mountain',
-      icon: '../../assets/svg-icons/mountain.svg'
-    },
-    {
-      id: 9,
-      name: 'mountain',
-      icon: '../../assets/svg-icons/mountain.svg'
-    },
-  ]
-
-  constructor() { }
-
-  ngOnInit() {
+  icons:Object[];
+  storke:string = "#000000";
+  constructor(public IconService: IconService, private sanitizer: DomSanitizer) {
   }
 
+  ngOnInit() {
+    this.getIcons();
+  }
+
+  getIcons() {
+    this.IconService.getIcons()
+      .subscribe((data:Object[]) => {
+        let strokeMarks = /stroke="#000000"/gi;
+        data.forEach((item)=>{ item.file = this.sanitizer.bypassSecurityTrustHtml(item.file.replace(strokeMarks, `stroke="#000000" class="js-icon-path"`))});
+        this.icons = data;
+      });
+  }
+
+  selectIcon(id) {
+    this.IconService.currentSvg = this.icons.find(item => item.id === id).file;
+  }
 }

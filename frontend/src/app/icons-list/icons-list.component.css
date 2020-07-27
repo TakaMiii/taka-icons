@@ -8,7 +8,7 @@ a {
 	justify-content: flex-start;
 }
 
-.items-list img {
+.items-list .svg-icon {
 	width: 100%;
 	border: 1px solid hsla(0, 0%, 90%, 1);
 	border-radius: 30px;

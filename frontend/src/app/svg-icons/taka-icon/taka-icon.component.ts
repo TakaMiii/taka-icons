@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChange } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { IconService } from '../../icon.service';
 
 @Component({
   selector: 'app-taka-icon',
@@ -7,10 +9,36 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TakaIconComponent implements OnInit {
   @Input() stroke: string;
-  constructor() { }
+  iconTemplate:string;
+  // svgId
+
+  constructor(public IconService: IconService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    if(this.IconService.currentSvg){
+      this.iconTemplate = this.IconService.currentSvg;
+    }else{
+      let id = this.route.snapshot.params.id;
+
+      let getIcon = this.IconService.getIcon(id)
+        .subscribe(()=>{
+          this.iconTemplate = this.IconService.currentSvg;
+        })
+    }
   }
+
+  ngOnChanges(changes: SimpleChange){
+    this.bindColorToEl();
+  }
+
+  bindColorToEl(){
+    let svgPath = document.getElementsByClassName("js-icon-path");
+
+    for(let i=0; i<svgPath.length; i++) {
+      (svgPath[i]as HTMLElement).setAttribute("stroke", `${ this.stroke }`)
+    }
+  }
+
   downloadSvg(){
   	let svg = document.querySelector('.js-taka-svg').innerHTML;
 

@@ -26,7 +26,7 @@ registerLocaleData(zh);
     AppComponent,
     IconsListComponent,
     NavComponent,
-    IconDetailComponent
+    IconDetailComponent,
   ],
   imports: [
     BrowserModule,
