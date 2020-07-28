@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { ConnectChatService } from '../connect-chat.service'
 
 @Component({
   selector: 'app-chart',
@@ -7,18 +8,24 @@ import { Component, OnInit} from '@angular/core';
 })
 export class ChartComponent implements OnInit {
   oldMousePos: Object = { x:Number, y:Number};
-  cardBindingPosition:Object = { x:10, y:10};
+  cardBindingPosition:Object = { x:null, y:null};
   canMove:boolean=false;
+  message:string;
 
-  constructor() { }
+  constructor(private chatService:ConnectChatService) { }
 
   ngOnInit() {
+  	let elmnt = document.querySelector('.js-card') as HTMLElement;
+  	let cardWidth = elmnt.offsetWidth;
+  	let cardHeight = elmnt.offsetHeight;
 
+  	this.cardBindingPosition['x'] = document.body.clientWidth - (cardWidth + 20);
+  	this.cardBindingPosition['y'] = document.body.clientHeight - (cardHeight + 185);
+
+  	this.chatService.wsFaction();
   }
 
   onDragStart(e){
-  	// e.preventDefault();
-
   	this.oldMousePos['x'] = e.clientX;
   	this.oldMousePos['y'] = e.clientY;
 
@@ -40,6 +47,11 @@ export class ChartComponent implements OnInit {
 
   closeDrag(e){
   	this.canMove=false;
+  }
+
+  sentMsgToWS(){
+  	console.log('訊息');
+  	this.chatService.sentMessage(this.message);
   }
 
 
