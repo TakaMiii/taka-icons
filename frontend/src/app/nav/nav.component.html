@@ -1,9 +1,14 @@
-<div class="nav" [class.nav-can-back]="router.url!=='/'">
-  <a [routerLink]="['/']" *ngIf="router.url!=='/'">
+<div class="nav" [class.nav-can-back]="router.url!=='/icons'">
+  <a [routerLink]="['/icons']" *ngIf="router.url!=='/icons'">
     <i nz-icon nzType="left" nzTheme="outline"></i>
     back to list
   </a>
   <ul>
-  	<li><span class="decoration"></span>About Taka</li>
+  	<li>
+  	  <a [routerLink]="['/chart']"><span class="decoration"></span>Chart</a>
+  	</li>
+  	<li>
+  	  <a><span class="decoration"></span>About Taka</a>
+  	</li>
   </ul>
 </div>

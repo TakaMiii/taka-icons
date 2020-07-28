@@ -1,0 +1,16 @@
+.chart-container {
+	position: relative;
+	border: 0px solid #000;
+	height: calc(100vh - 68px);
+}
+
+.card {
+	width: 350px;
+	position: absolute;
+}
+
+.drag-icon {
+	width: 20px;
+	height: 20px;
+	background-image: url("../../assets/svg-icons/move.svg");
+}

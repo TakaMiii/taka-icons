@@ -1,0 +1,25 @@
+<div class="chart">
+  <div class="chart-container" (mousemove)="onDraging($event)" (mouseup)="closeDrag($event)">
+    <nz-card
+    nzTitle="跟Taka聊天"
+    class="card js-card"
+    [nzExtra]="extraTemplate"
+    (mousedown)="onDragStart($event)"
+    [style.left]="cardBindingPosition.x + 'px'"
+    [style.top]="cardBindingPosition.y + 'px' "
+    >
+
+      <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+        <input type="text" nz-input placeholder="input search text" />
+      </nz-input-group>
+      <ng-template #suffixButton>
+        <button nz-button nzType="primary" nzSize="large" nzSearch>送出</button>
+      </ng-template>
+    </nz-card>
+  </div>
+</div>
+
+<ng-template #extraTemplate>
+  <div class="drag-icon"></div>
+</ng-template>
+

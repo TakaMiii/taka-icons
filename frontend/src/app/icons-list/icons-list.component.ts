@@ -28,9 +28,7 @@ export class IconsListComponent implements OnInit {
 
   getIcons() {
     this.IconService.getIcons()
-      .subscribe((data:Object[]) => {
-        let strokeMarks = /stroke="#000000"/gi;
-        data.forEach((item)=>{ item.file = this.sanitizer.bypassSecurityTrustHtml(item.file.replace(strokeMarks, `stroke="#000000" class="js-icon-path"`))});
+      .subscribe((data:any) => {
         this.icons = data;
       });
   }

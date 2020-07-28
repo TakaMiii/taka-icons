@@ -5,12 +5,22 @@
 	border-bottom: 1px solid var(--frame-color)
 }
 
-.nav li {
-	position: relative;
+a {
+	border: 0px solid pink;
 }
 
-.nav li>.decoration {
-	/*margin-right: 12px;*/
+.nav ul {
+	border: 0px solid #000;
+	display: flex;
+	justify-content: space-around;
+}
+
+.nav li {
+	position: relative;
+	margin: 0 30px;
+}
+
+.nav .decoration {
 	width: 15px;
 	height: 15px;
 	left: -30px;
@@ -23,7 +33,7 @@
 
 .nav li:hover .decoration {
 	width: 150%;
-
+	left: -10px;
 }
 
 

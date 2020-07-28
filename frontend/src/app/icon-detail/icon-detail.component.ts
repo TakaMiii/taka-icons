@@ -8,7 +8,6 @@ import { TakaIconComponent } from '../svg-icons/taka-icon/taka-icon.component';
   styleUrls: ['./icon-detail.component.css']
 })
 export class IconDetailComponent implements OnInit {
-  //  這個data遲早要拆到service裡
   @ViewChild(TakaIconComponent, {static: false}) private iconComponent: TakaIconComponent;
 
   icon = {
