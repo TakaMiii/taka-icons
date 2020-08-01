@@ -9,7 +9,7 @@ import { IconService } from '../../icon.service';
 })
 export class TakaIconComponent implements OnInit {
   @Input() stroke: string;
-  iconTemplate:string;
+  iconTemplate:object;
   // svgId
 
   constructor(public IconService: IconService, private route: ActivatedRoute) { }

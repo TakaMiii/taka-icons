@@ -16,6 +16,12 @@ import { DomSanitizer } from '@angular/platform-browser';
   encapsulation: ViewEncapsulation.None,
 })
 
+// interface Icon {
+//   id: number,
+//   name: string,
+//   file: Object,
+// }
+
 export class IconsListComponent implements OnInit {
   icons:Object[];
   storke:string = "#000000";
@@ -28,12 +34,12 @@ export class IconsListComponent implements OnInit {
 
   getIcons() {
     this.IconService.getIcons()
-      .subscribe((data:any) => {
+      .subscribe((data:Array<any>) => {
         this.icons = data;
       });
   }
 
   selectIcon(id) {
-    this.IconService.currentSvg = this.icons.find(item => item.id === id).file;
+    this.IconService.currentSvg = this.icons.find(item => item['id'] === id)['file'];
   }
 }

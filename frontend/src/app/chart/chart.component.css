@@ -1,16 +1,39 @@
-.chart-container {
+.chart {
 	position: relative;
 	border: 0px solid #000;
 	height: calc(100vh - 68px);
+	overflow: hidden;
 }
 
 .card {
 	width: 350px;
 	position: absolute;
+	border: 1px solid var(--frame-color);
+	padding: 16px 8px;
+	padding-top: 0;
+}
+
+.card>.header {
+	display: flex;
+	justify-content: space-between;
+	padding: 0 8px;
+	margin: 16px 0;
+	border-bottom: 1px solid var(--frame-color);
 }
 
 .drag-icon {
 	width: 20px;
 	height: 20px;
 	background-image: url("../../assets/svg-icons/move.svg");
+}
+
+.message-block {
+	border: 0px solid #000;
+	display: flex;
+	justify-content: center;
+}
+
+.message-block>ul {
+	width: 80%;
+	max-width: 600px;
 }

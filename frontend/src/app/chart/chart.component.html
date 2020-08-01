@@ -1,25 +1,45 @@
-<div class="chart">
-  <div class="chart-container" (mousemove)="onDraging($event)" (mouseup)="closeDrag($event)">
-    <nz-card
-    nzTitle="跟Taka聊天"
-    class="card js-card"
-    [nzExtra]="extraTemplate"
-    (mousedown)="onDragStart($event)"
-    [style.left]="cardBindingPosition.x + 'px'"
-    [style.top]="cardBindingPosition.y + 'px' "
-    >
-
-      <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-        <input type="text" nz-input placeholder="input search text" [(ngModel)]="message" />
-      </nz-input-group>
-      <ng-template #suffixButton>
-        <button nz-button nzType="primary" nzSize="large" nzSearch (click)="sentMsgToWS()">送出</button>
-      </ng-template>
-    </nz-card>
+<div class="chart" #chart (mouseup)="closeDrag()">
+  <div class="message-block">
+    <ul>
+      <li *ngFor="let msg of messages; let i=index">
+        <p>{{ msg }}</p>
+      </li>
+    </ul>
   </div>
+
+  <div class="card"
+  #card
+  (mousedown)="onDragStart($event)"
+  (mouseup)="closeDrag()">
+    <div class="header"><h3>Talk with Taka</h3><div class="drag-icon"></div></div>
+    <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+      <input type="text" nz-input placeholder="input search text" [(ngModel)]="message" />
+    </nz-input-group>
+    <ng-template #suffixButton>
+      <button nz-button nzType="primary" nzSize="large" nzSearch (click)="sentMsgToWS()">送出</button>
+    </ng-template>
+  </div>
+
+
+
+ <!--  <nz-card
+  nzTitle="Talk with Taka"
+  class="card"
+  #card
+  [nzExtra]="extraTemplate"
+  (mousedown)="onDragStart($event)"
+  (mouseup)="closeDrag()"
+  >
+    <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+      <input type="text" nz-input placeholder="input search text" [(ngModel)]="message" />
+    </nz-input-group>
+    <ng-template #suffixButton>
+      <button nz-button nzType="primary" nzSize="large" nzSearch (click)="sentMsgToWS()">送出</button>
+    </ng-template>
+  </nz-card> -->
 </div>
 
-<ng-template #extraTemplate>
+<!-- <ng-template #extraTemplate>
   <div class="drag-icon"></div>
-</ng-template>
+</ng-template> -->
 

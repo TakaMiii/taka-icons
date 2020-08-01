@@ -7,16 +7,18 @@ import { DomSanitizer } from '@angular/platform-browser';
 @Injectable({
   providedIn: 'root'
 })
+
 export class IconService {
-  public currentSvg: any = "";
+  public currentSvg: Object;
+
   strokeMarks = /stroke="#000000"/gi;
 
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
 
   getIcons() {
   	return this.http.get('/api/taka-icons/icon').pipe(
-      map(icons=> {
-      	icons.map(icon => {
+      map(icons => {
+      	icons['map'](icon => {
       		icon.file = icon.file.replace(`<?xml version="1.0" encoding="UTF-8"?>`,"").replace(/\n/g, "").replace(`width="450px" height="450px"`,"").replace(this.strokeMarks, `stroke="#000000" class="js-icon-path"`);
           icon.file = this.sanitizer.bypassSecurityTrustHtml(icon.file);
       	});
@@ -28,7 +30,8 @@ export class IconService {
   getIcon(id) {
     return this.http.get(`/api/taka-icons/icon?icon=${id}`).pipe(
       map(icon => {
-        let svg = this.sanitizer.bypassSecurityTrustHtml(icon.file.replace(`<?xml version="1.0" encoding="UTF-8"?>`,"").replace(/\n/g, "").replace(`width="450px" height="450px"`,"").replace(this.strokeMarks, `stroke="#000000" class="js-icon-path"`));
+        let iconTemplate = icon['file'].replace(`<?xml version="1.0" encoding="UTF-8"?>`,"").replace(/\n/g, "").replace(`width="450px" height="450px"`,"").replace(this.strokeMarks, `stroke="#000000" class="js-icon-path"`);
+        let svg = this.sanitizer.bypassSecurityTrustHtml(iconTemplate);
         this.currentSvg = svg;
     })
   )}

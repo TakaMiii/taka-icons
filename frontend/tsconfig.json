@@ -14,6 +14,7 @@
     "typeRoots": [
       "node_modules/@types"
     ],
+    "types" : ["lodash"],
     "lib": [
       "es2018",
       "dom"
