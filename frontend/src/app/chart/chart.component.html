@@ -1,4 +1,4 @@
-<div class="chart" #chart (mouseup)="closeDrag()">
+<div class="chart" #chart (mouseup)="closeDrag()" (mousemove)="onDraging($event)">
   <div class="message-block">
     <ul>
       <li *ngFor="let msg of messages; let i=index">
@@ -10,7 +10,9 @@
   <div class="card"
   #card
   (mousedown)="onDragStart($event)"
-  (mouseup)="closeDrag()">
+  (mouseup)="closeDrag()"
+  [style.left.px]="cardLeft"
+  [style.top.px]="cardTop">
     <div class="header"><h3>Talk with Taka</h3><div class="drag-icon"></div></div>
     <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
       <input type="text" nz-input placeholder="input search text" [(ngModel)]="message" />
@@ -19,8 +21,6 @@
       <button nz-button nzType="primary" nzSize="large" nzSearch (click)="sentMsgToWS()">送出</button>
     </ng-template>
   </div>
-
-
 
  <!--  <nz-card
   nzTitle="Talk with Taka"
