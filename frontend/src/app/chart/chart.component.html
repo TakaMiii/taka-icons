@@ -6,40 +6,33 @@
       </li>
     </ul>
   </div>
-
   <div class="card"
   #card
   (mousedown)="onDragStart($event)"
   (mouseup)="closeDrag()"
   [style.left.px]="cardLeft"
   [style.top.px]="cardTop">
-    <div class="header"><h3>Talk with Taka</h3><div class="drag-icon"></div></div>
-    <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-      <input type="text" nz-input placeholder="input search text" [(ngModel)]="message" />
-    </nz-input-group>
-    <ng-template #suffixButton>
-      <button nz-button nzType="primary" nzSize="large" nzSearch (click)="sentMsgToWS()">送出</button>
-    </ng-template>
+  <div class="header">
+    <h3><span *ngIf="user.name!==''">Hi, {{ user.name }} </span>開始聊天</h3>
+    <i nz-icon nzType="drag" nzTheme="outline"></i>
   </div>
+    <div *ngIf="isLogin">
+      <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+        <input type="text" nz-input placeholder="input search text" [(ngModel)]="message" />
+      </nz-input-group>
+      <ng-template #suffixButton>
+        <button nz-button nzType="primary" nzSize="large" nzSearch (click)="sentMsgToWS()">送出</button>
+      </ng-template>
+      <div class="logout-btn-container">
+        <button nz-button nzType="link" (click)="signOut()"><i nz-icon nzType="logout"></i>Logout</button>
+      </div>
+    </div>
 
- <!--  <nz-card
-  nzTitle="Talk with Taka"
-  class="card"
-  #card
-  [nzExtra]="extraTemplate"
-  (mousedown)="onDragStart($event)"
-  (mouseup)="closeDrag()"
-  >
-    <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-      <input type="text" nz-input placeholder="input search text" [(ngModel)]="message" />
-    </nz-input-group>
-    <ng-template #suffixButton>
-      <button nz-button nzType="primary" nzSize="large" nzSearch (click)="sentMsgToWS()">送出</button>
-    </ng-template>
-  </nz-card> -->
+<!--     <ng-template #login> -->
+    <div class="fb-login-btn-container" [style.display]="isLogin?'none':'flex'">
+      <div class="fb-login-button" (onlogin)="getUserInfo()" data-size="large" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" data-width=""></div>
+    </div>
+<!--     </ng-template> -->
+  </div>
 </div>
-
-<!-- <ng-template #extraTemplate>
-  <div class="drag-icon"></div>
-</ng-template> -->
 

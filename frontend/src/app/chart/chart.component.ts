@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { ConnectChatService } from '../connect-chat.service'
+import { ConnectChatService } from '../connect-chat.service';
+import { FacebookLoginService } from '../facebook-login.service'
 
 @Component({
   selector: 'app-chart',
@@ -17,17 +18,22 @@ export class ChartComponent implements OnInit {
   message:string;
   cardLeft:number;
   cardTop:number;
+  isLogin:boolean=false;
+  user:{name:string}={
+    name: "",
+  };
 
   @ViewChild('chart',{read: ElementRef, static: true}) chart:ElementRef;
   @ViewChild('card',{read: ElementRef, static: true}) card:ElementRef;
 
-  constructor(private chatService:ConnectChatService) {}
+  constructor(private chatService:ConnectChatService, public fbLoginService:FacebookLoginService) {}
 
   ngOnInit() {
     this.initChatInputCard();
   	this.chatService.wsFaction().subscribe(
       (event) => {this.messages.push(event)}
-    )
+    );
+    this.getUserInfo();
   }
 
   initChatInputCard(){
@@ -36,7 +42,7 @@ export class ChartComponent implements OnInit {
     let cardHeight = elmnt.offsetHeight;
 
     let initLeft = this.chart.nativeElement.clientWidth - (cardWidth + 20);
-    let initTop = this.chart.nativeElement.clientHeight - (cardHeight + 56);
+    let initTop = this.chart.nativeElement.clientHeight - (cardHeight + 70);
 
     this.pos3 = initLeft;
     this.pos4 = initTop;
@@ -73,6 +79,24 @@ export class ChartComponent implements OnInit {
   }
 
   sentMsgToWS(){
-  	this.chatService.sentMessage(this.message);
+  	this.chatService.sentMessage(this.message, this.user.name);
+  }
+
+  getUserInfo(){
+    this.fbLoginService.getLoginStatus().subscribe(
+      (event)=>{
+        this.isLogin = event;
+
+        if(this.fbLoginService.user) {
+          this.user.name = this.fbLoginService.user.name;
+        }
+      }
+    )
+  }
+
+  signOut(){
+    this.fbLoginService.signOut().subscribe((event)=>{
+      this.getUserInfo();
+    });
   }
 }

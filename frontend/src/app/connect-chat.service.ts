@@ -19,9 +19,10 @@ export class ConnectChatService {
     })
   }
 
-  sentMessage(msg){
+  sentMessage(msg, user){
   	if(this.chatSocket.readyState===1){
   	  this.chatSocket.send(JSON.stringify({
+        'name': user,
   	    'message': msg
   	  }));
   	}

@@ -21,10 +21,9 @@
 	border-bottom: 1px solid var(--frame-color);
 }
 
-.drag-icon {
-	width: 20px;
-	height: 20px;
-	background-image: url("../../assets/svg-icons/move.svg");
+.fb-login-btn-container {
+	display: flex;
+	justify-content: center;
 }
 
 .message-block {
@@ -36,4 +35,11 @@
 .message-block>ul {
 	width: 80%;
 	max-width: 600px;
+}
+
+.logout-btn-container {
+	margin-top: 8px;
+	display: flex;
+	justify-content: flex-end;
+	align-self: center;
 }

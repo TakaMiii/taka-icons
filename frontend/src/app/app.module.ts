@@ -16,13 +16,28 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
+import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider } from 'angularx-social-login';
 
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzCardModule } from 'ng-zorro-antd/card';
-import { NzIconModule } from 'ng-zorro-antd/icon';
+import { IconDefinition } from '@ant-design/icons-angular';
+import { NzIconModule, NZ_ICONS} from 'ng-zorro-antd/icon';
+import { LogoutOutline, DragOutline } from '@ant-design/icons-angular/icons';
 
 registerLocaleData(zh);
+const icons: IconDefinition[] = [ LogoutOutline, DragOutline ];
+
+const config = new AuthServiceConfig([
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider('2714054852029779')
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -43,9 +58,14 @@ registerLocaleData(zh);
     NzInputModule,
     NzCardModule,
     NzIconModule,
-    SvgIconsModule
+    SvgIconsModule,
+    SocialLoginModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: zh_CN }],
+  providers: [
+    { provide: NZ_I18N, useValue: zh_CN},
+    { provide: NZ_ICONS, useValue: icons },
+    { provide: AuthServiceConfig, useFactory: provideConfig }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
