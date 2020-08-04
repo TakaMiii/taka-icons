@@ -1,4 +1,5 @@
-<div class="chart" #chart (mouseup)="closeDrag()" (mousemove)="onDraging($event)">
+<div class="chart" #chart>
+  <canvas id="dots"></canvas>
   <div class="message-block">
     <ul>
       <li *ngFor="let msg of messages; let i=index">
@@ -8,8 +9,6 @@
   </div>
   <div class="card"
   #card
-  (mousedown)="onDragStart($event)"
-  (mouseup)="closeDrag()"
   [style.left.px]="cardLeft"
   [style.top.px]="cardTop">
   <div class="header">
@@ -28,11 +27,9 @@
       </div>
     </div>
 
-<!--     <ng-template #login> -->
     <div class="fb-login-btn-container" [style.display]="isLogin?'none':'flex'">
       <div class="fb-login-button" (onlogin)="getUserInfo()" data-size="large" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" data-width=""></div>
     </div>
-<!--     </ng-template> -->
   </div>
 </div>
 

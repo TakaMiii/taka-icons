@@ -16,6 +16,8 @@ export class ChartComponent implements OnInit {
   canMove:boolean=false;
   messages:Array<string>=[];
   message:string;
+  cardWidth:number;
+  cardHeight:number;
   cardLeft:number;
   cardTop:number;
   isLogin:boolean=false;
@@ -29,38 +31,127 @@ export class ChartComponent implements OnInit {
   constructor(private chatService:ConnectChatService, public fbLoginService:FacebookLoginService) {}
 
   ngOnInit() {
-    this.initChatInputCard();
+    this.cardDrag();
   	this.chatService.wsFaction().subscribe(
       (event) => {this.messages.push(event)}
     );
     this.getUserInfo();
+    this.runCanvas();
   }
 
-  initChatInputCard(){
+  runCanvas(){
+    let canvas = this.chart.nativeElement.querySelector('#dots');
+    canvas.width = this.chart.nativeElement.offsetWidth;
+    canvas.height = this.chart.nativeElement.offsetHeight;
+    let ctx = canvas.getContext('2d');
+    let minX = 80;
+    let maxX = canvas.width - 80;
+    let minY = 0;
+    let maxY = canvas.height;
+    let dotsPos=[{x:120, y:120, s: 130}, {x:350, y:500, s:80}, {x:650, y:200, s:120}];
+    let moveTo =[{x: initMoveTo(), y: initMoveTo()}, {x:initMoveTo(), y:initMoveTo()}, {x:initMoveTo(), y:initMoveTo()}]
+    
+    function initMoveTo(){
+      return Math.random()>0.5?1:-1;
+    }
+
+    function dot(x, y, size){
+      ctx.beginPath();
+      ctx.arc(x, y, size, 0, 2 * Math.PI);
+      ctx.fillStyle = "#FFD1C4";
+      ctx.fill();
+      ctx.closePath();
+    }
+
+    let collide=(x, y, s)=>{
+      let touchLeftTop, touchRightTop, touchLeftBottom, touchRightBottom;
+      function getDist(dx, dy){
+        return Math.round(Math.sqrt(dx*dx + dy*dy));
+      }
+      touchLeftTop = getDist(x - this.cardLeft, y - this.cardTop)
+      if(touchLeftTop<s){
+        return true;
+      }
+      touchRightTop = getDist(x - (this.cardWidth + this.cardLeft), y - this.cardTop)
+      if(touchRightTop<s){
+        return true;
+      }
+      touchLeftBottom = getDist(x - this.cardLeft, y - (this.cardTop + this.cardHeight));
+      if(touchLeftBottom<s){
+        return true;
+      }
+      touchRightBottom = getDist(x - (this.cardWidth + this.cardLeft), y - (this.cardTop + this.cardHeight))
+      if(touchRightBottom<s){
+        return true;
+      }
+      return false;
+    }
+
+    function draw(){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for(let i=0; i<dotsPos.length; i++){
+        dot(dotsPos[i].x, dotsPos[i].y, dotsPos[i].s);
+
+        if(dotsPos[i].x <= minX){
+          moveTo[i].x = 1;
+        }
+
+        if(dotsPos[i].x>=maxX){
+          moveTo[i].x = -1;
+        }
+
+        if(dotsPos[i].y <= minY){
+          moveTo[i].y = 1;
+        }
+
+        if(dotsPos[i].y >= maxY){
+          moveTo[i].y = -1;
+        }
+
+        let touchCard = collide(dotsPos[i].x, dotsPos[i].y, dotsPos[i].s);
+        if(touchCard){
+          moveTo[i].x = -10;
+          moveTo[i].y = -10;
+        }
+
+        dotsPos[i].x += moveTo[i].x;
+        dotsPos[i].y += moveTo[i].y;
+      }
+    }
+
+    for(let i=0; i<dotsPos.length; i++){
+      new dot(dotsPos[i].x, dotsPos[i].y, dotsPos[i].s);
+    }
+
+    setInterval(draw, 80);
+  }
+
+  cardDrag(){
     let elmnt = this.card.nativeElement;
-    let cardWidth = elmnt.offsetWidth;
-    let cardHeight = elmnt.offsetHeight;
+    let chart = this.chart.nativeElement;
 
-    let initLeft = this.chart.nativeElement.clientWidth - (cardWidth + 20);
-    let initTop = this.chart.nativeElement.clientHeight - (cardHeight + 70);
-
+    this.cardWidth = elmnt.offsetWidth;
+    this.cardHeight = elmnt.offsetHeight;
+    let initLeft = this.chart.nativeElement.clientWidth - (this.cardWidth + 20);
+    let initTop = this.chart.nativeElement.clientHeight - (this.cardHeight * 2.4);
     this.pos3 = initLeft;
     this.pos4 = initTop;
 
     this.cardLeft = initLeft;
     this.cardTop = initTop;
-  }
 
-  onDragStart(e){
-  	this.pos3 = e.clientX;
-  	this.pos4 = e.clientY;
-  	this.canMove = true;
-  }
+    let onDragStart = (e)=>{
+      this.pos3 = e.clientX;
+      this.pos4 = e.clientY;
+      
+      elmnt.onmouseup = closeDrag;
+      chart.onmouseup = closeDrag;
+      chart.onmousemove = onDraging;
+    }
 
-  onDraging(e){
-    if(this.canMove){
+    let onDraging = (e)=>{
       e.preventDefault();
-      let elmnt = this.card.nativeElement;
+      
       this.pos1 = this.pos3 - e.clientX;
       this.pos2 = this.pos4 - e.clientY;
 
@@ -70,16 +161,18 @@ export class ChartComponent implements OnInit {
       this.pos3 = e.clientX;
       this.pos4 = e.clientY;
     }
-  }
 
-  closeDrag(){
-    if(this.canMove) {
-      this.canMove=false;
+    function closeDrag(){
+      chart.onmousemove = null;
+      chart.onmouseup = null;
+      elmnt.onmouseup = null;
     }
+    elmnt.onmousedown = onDragStart;
   }
 
   sentMsgToWS(){
   	this.chatService.sentMessage(this.message, this.user.name);
+    this.message = "";
   }
 
   getUserInfo(){
