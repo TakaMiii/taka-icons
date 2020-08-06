@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { AppRoutingModule } from './app-routing.module';
 import { SvgIconsModule } from './svg-icons/svg-icons.module';
 
 import { AppComponent } from './app.component';
@@ -24,6 +22,7 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { IconDefinition } from '@ant-design/icons-angular';
 import { NzIconModule, NZ_ICONS} from 'ng-zorro-antd/icon';
 import { LogoutOutline, DragOutline } from '@ant-design/icons-angular/icons';
+import { AppRoutingModule } from './app-routing.module';
 
 registerLocaleData(zh);
 const icons: IconDefinition[] = [ LogoutOutline, DragOutline ];
@@ -49,7 +48,6 @@ export function provideConfig() {
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     NgZorroAntdModule,
     FormsModule,
     HttpClientModule,
@@ -59,7 +57,8 @@ export function provideConfig() {
     NzCardModule,
     NzIconModule,
     SvgIconsModule,
-    SocialLoginModule
+    SocialLoginModule,
+    AppRoutingModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN},

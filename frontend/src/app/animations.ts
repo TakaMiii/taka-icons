@@ -50,6 +50,23 @@ trigger('routeAnimations', [
   	]),
   	query(':enter', animateChild()),
   ]),
+  transition('* => ChartPage', [
+      style({ position: 'relative', height: '100vh',}),
+      query(':enter, :leave', [
+        style({
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+        })
+      ]),
+      query(':enter', [
+        style({ top: '100%', zIndex: '10' })
+      ]),
+      query(':enter', [
+        animate('800ms linear', style({ top: '0%' }))
+      ])
+    ])
 ])
 
 

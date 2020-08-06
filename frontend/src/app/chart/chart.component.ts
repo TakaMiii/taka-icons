@@ -64,25 +64,33 @@ export class ChartComponent implements OnInit {
     }
 
     let collide=(x, y, s)=>{
-      let touchLeftTop, touchRightTop, touchLeftBottom, touchRightBottom;
+      let touchLeftTop, touchRightTop, touchLeftBottom, touchRightBottom, touchTop, touchBottom;
       function getDist(dx, dy){
         return Math.round(Math.sqrt(dx*dx + dy*dy));
       }
       touchLeftTop = getDist(x - this.cardLeft, y - this.cardTop)
       if(touchLeftTop<s){
-        return true;
+        return [-10, -10];
       }
       touchRightTop = getDist(x - (this.cardWidth + this.cardLeft), y - this.cardTop)
       if(touchRightTop<s){
-        return true;
+        return [10, -10];
       }
       touchLeftBottom = getDist(x - this.cardLeft, y - (this.cardTop + this.cardHeight));
       if(touchLeftBottom<s){
-        return true;
+        return [-10, 10];
       }
       touchRightBottom = getDist(x - (this.cardWidth + this.cardLeft), y - (this.cardTop + this.cardHeight))
       if(touchRightBottom<s){
-        return true;
+        return [10, 10];
+      }
+      touchTop = getDist(x - (this.cardLeft + this.cardWidth/2), y - this.cardTop);
+      if(touchTop<s){
+        return [1, -10];
+      }
+      touchBottom = getDist(x - (this.cardLeft + this.cardWidth/2), y - (this.cardTop + this.cardHeight));
+      if(touchBottom<s){
+        return [-1, 10];
       }
       return false;
     }
@@ -110,8 +118,8 @@ export class ChartComponent implements OnInit {
 
         let touchCard = collide(dotsPos[i].x, dotsPos[i].y, dotsPos[i].s);
         if(touchCard){
-          moveTo[i].x = -10;
-          moveTo[i].y = -10;
+          moveTo[i].x = touchCard[0];
+          moveTo[i].y = touchCard[1];
         }
 
         dotsPos[i].x += moveTo[i].x;
@@ -183,6 +191,8 @@ export class ChartComponent implements OnInit {
         if(this.fbLoginService.user) {
           this.user.name = this.fbLoginService.user.name;
         }
+        let card = this.card.nativeElement;
+        this.cardHeight = card.offsetHeight;
       }
     )
   }

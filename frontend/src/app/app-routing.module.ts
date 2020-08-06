@@ -7,7 +7,7 @@ import { ChartComponent } from './chart/chart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/icons', pathMatch: 'full' },
-  { path: 'icons', component: IconsListComponent, data: {animation: 'IconsList'} },
+  { path: 'icons', component: IconsListComponent, data: {animation: 'IconsList'},},
   { path: 'icon/:id', component: IconDetailComponent, data: {animation: 'IconPage'} },
   { path: 'chart', component: ChartComponent, data: {animation: 'ChartPage'} }
 ];
