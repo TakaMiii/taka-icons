@@ -33,10 +33,14 @@ export class IconsListComponent implements OnInit {
   }
 
   getIcons() {
-    this.IconService.getIcons()
-      .subscribe((data:Array<any>) => {
+    this.IconService.getIcons().subscribe(
+      (data:Array<any>) => {
         this.icons = data;
-      });
+      },
+      err=> {
+        console.log('errors already caught... will not run');
+      }
+    );
   }
 
   selectIcon(id) {

@@ -23,9 +23,13 @@ export class IconService {
           icon.file = this.sanitizer.bypassSecurityTrustHtml(icon.file);
       	});
         return icons;
-      }
+      }),
+      catchError(err => {
+        console.log(err)
+        return [];
+      })
     )
-  )};
+  };
 
   getIcon(id) {
     return this.http.get(`/api/taka-icons/icon?icon=${id}`).pipe(

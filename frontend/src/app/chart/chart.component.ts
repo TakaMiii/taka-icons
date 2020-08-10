@@ -185,7 +185,7 @@ export class ChartComponent implements OnInit {
 
   getUserInfo(){
     this.fbLoginService.getLoginStatus().subscribe(
-      (event)=>{
+      event=>{
         this.isLogin = event;
 
         if(this.fbLoginService.user) {
@@ -193,6 +193,9 @@ export class ChartComponent implements OnInit {
         }
         let card = this.card.nativeElement;
         this.cardHeight = card.offsetHeight;
+      },
+      err=>{
+        console.log(err)
       }
     )
   }
