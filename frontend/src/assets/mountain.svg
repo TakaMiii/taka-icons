@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="367px" height="367px" viewBox="0 0 367 367" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-602.000000, -180.000000)">
+            <g id="Group" transform="translate(601.000000, 166.000000)">
+                <rect id="Rectangle" stroke="#E5E3E3" stroke-linecap="square" x="2" y="15" width="365" height="365" rx="21"></rect>
+                <g id="mountain" stroke="#000000" stroke-linecap="round">
+                    <g id="icon" transform="translate(32.066667, 106.527473)">
+                        <path d="M87.1555556,152.238193 L194.937274,4.06037995 C198.11949,-0.314514684 204.285143,-1.30972117 208.708648,1.83752485 C209.619087,2.4852867 210.411195,3.28182839 211.050921,4.19291233 L305.866667,139.227204 L305.866667,139.227204" id="Path" stroke-width="4"></path>
+                        <path d="M0,152.238193 C12.5073415,138.940029 37.3358663,112.654654 74.4855748,73.3820699 L74.4855748,73.3820699 C78.2083816,69.4465279 84.4521489,69.2409079 88.4314192,72.9228047 C88.612253,73.0901244 88.7866545,73.2641187 88.9542514,73.4444169 C92.6869002,77.459935 95.7000807,81.3910077 97.9937937,85.2376351" id="Path-2" stroke-width="4"></path>
+                        <polyline id="Path-3" stroke-width="4" points="164.781684 58.1070549 173.980295 72.5458853 185.717839 52.5100422 203.088889 78.3521506 218.650087 52.5100422 231.2227 72.5458853 241.140755 58.1070549"></polyline>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

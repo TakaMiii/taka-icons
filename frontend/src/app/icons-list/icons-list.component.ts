@@ -16,12 +16,6 @@ import { DomSanitizer } from '@angular/platform-browser';
   encapsulation: ViewEncapsulation.None,
 })
 
-// interface Icon {
-//   id: number,
-//   name: string,
-//   file: Object,
-// }
-
 export class IconsListComponent implements OnInit {
   icons:Object[];
   storke:string = "#000000";

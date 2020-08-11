@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SvgIconsModule } from './svg-icons/svg-icons.module';
+import { CoverPageModule } from './cover-page/cover-page.module';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -23,6 +24,8 @@ import { IconDefinition } from '@ant-design/icons-angular';
 import { NzIconModule, NZ_ICONS} from 'ng-zorro-antd/icon';
 import { LogoutOutline, DragOutline } from '@ant-design/icons-angular/icons';
 import { AppRoutingModule } from './app-routing.module';
+import { AboutMeComponent } from './about-me/about-me.component';
+
 
 registerLocaleData(zh);
 const icons: IconDefinition[] = [ LogoutOutline, DragOutline ];
@@ -45,6 +48,7 @@ export function provideConfig() {
     NavComponent,
     IconDetailComponent,
     ChartComponent,
+    AboutMeComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +62,8 @@ export function provideConfig() {
     NzIconModule,
     SvgIconsModule,
     SocialLoginModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CoverPageModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN},
