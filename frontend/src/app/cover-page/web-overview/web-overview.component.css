@@ -1,19 +1,12 @@
-.overview {
-	overflow-x: hidden;
-}
-
 .between-container {
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
 	margin: 8% 0;
+	margin-right: calc(100% - 100vw);
 	padding: 0 10%;
 	border: 0px solid #000;
 }
-
-/*img {
-	
-}*/
 
 .overview-contents {
 	border: 0px solid #000;

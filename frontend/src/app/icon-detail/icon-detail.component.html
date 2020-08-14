@@ -11,7 +11,12 @@
   	</form>
     <canvas id="img-canvas" class="js-canvas-upload canvas-upload" [width]="imgCanvas.width" [height]="imgCanvas.height" (click)="colorStraw($event)">
     </canvas>
+    <div>
+      <button *ngIf="imgCanvas.uploadImg" nz-button nzType="default" (click)="getHexColors()">顏色分析</button>
+      <app-color-analysis [colors]="allColorsHex"></app-color-analysis>
+    </div>
   </div>
+
   <div class="icon-container">
     <div class="icon-tool-bar">
       <input nz-input placeholder="HEX" [(ngModel)]="hexValue" />

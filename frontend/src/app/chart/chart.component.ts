@@ -187,7 +187,6 @@ export class ChartComponent implements OnInit {
     this.fbLoginService.getLoginStatus().subscribe(
       event=>{
         this.isLogin = event;
-
         if(this.fbLoginService.user) {
           this.user.name = this.fbLoginService.user.name;
         }
@@ -198,6 +197,12 @@ export class ChartComponent implements OnInit {
         console.log(err)
       }
     )
+  }
+
+  signIn(){
+    this.fbLoginService.signIn().subscribe(()=>{
+      this.getUserInfo();
+    })
   }
 
   signOut(){

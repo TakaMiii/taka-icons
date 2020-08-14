@@ -101,13 +101,13 @@ trigger('routeAnimations', [
       })
     ]),
     query(':enter', [
-      style({ left: '100%', zIndex: '10' })
+      style({ left: '100%'})
     ]),
-    query(':leave', animateChild()),
+    query(':leave', animateChild(), { optional: true }),
     group([
       query(':leave', [
         animate('500ms linear', style({ left: '-100%' }))
-      ]),
+      ], { optional: true }),
       query(':enter', [
         animate('500ms linear', style({ left: '0%' }))
       ])

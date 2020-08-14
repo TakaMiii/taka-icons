@@ -8,6 +8,10 @@
   --frame-color: hsla(0, 0%, 90%, 1);
 }
 
+body {
+  overflow-x: hidden; 
+}
+
 a {
 	text-decoration:none;
 }
@@ -20,6 +24,10 @@ ul, li {
 
 .hide {
 	display: none;
+}
+
+.route-content {
+  margin-right: calc(100% - 100vw);;
 }
 
 .content-container {

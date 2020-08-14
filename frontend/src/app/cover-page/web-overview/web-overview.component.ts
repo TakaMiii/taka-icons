@@ -9,7 +9,6 @@ import { debounceTime, distinctUntilChanged, filter, map, switchMap } from 'rxjs
   styleUrls: ['./web-overview.component.css'],
   animations: [
     trigger('skewUpright', [
-      // ...
       state('skew', style({
         transform: 'skewX(-5deg)'
       })),
@@ -31,16 +30,16 @@ export class WebOverviewComponent implements OnInit {
   contents = [
     {
       title: 'Download SVG icons',
-      text: '下載SVG icons<br>根據上傳的圖片，改變 icon 顏色<br>再多寫一些些字看會怎樣'
+      text: '下載SVG icons<br>根據上傳的圖片，改變 icon 顏色<br>分析圖檔的顏色佔比'
     },
     {
       title: 'Chat room',
-      text: '登入Faceebook帳號，使用聊天室<br>再多寫一些些字看會怎樣'
+      text: '登入Faceebook帳號，使用聊天室'
     }
   ]
 
   scroll = fromEvent(window, 'scroll').pipe(
-    map(() => {}, debounceTime(30)),
+    map(() => {}, debounceTime(500)),
   );
 
 

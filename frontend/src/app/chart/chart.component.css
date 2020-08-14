@@ -9,7 +9,6 @@
 .card {
 	width: 350px;
 	position: absolute;
-	/*border: 1px solid var(--frame-color);*/
 	padding: 16px 8px;
 	padding-top: 0;
 	background: #FFFFFF;
@@ -26,6 +25,15 @@
 .fb-login-btn-container {
 	display: flex;
 	justify-content: center;
+}
+
+.fb-login-btn-container button {
+	color: #FFFFFF;
+	background: #1f69f6;
+}
+
+.fb-login-btn-container button:hover {
+	color: #FFFFFF;
 }
 
 .message-block {

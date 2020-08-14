@@ -13,21 +13,22 @@ export class IconDetailComponent implements OnInit {
   icon = {
     id: 1,
     name: 'mountain',
-    // icon: '../../assets/svg-icons/mountain.svg'
   }
   imgUrl;
   hexValue:string='#000000';
   imgCanvas={
-    img: null,
-    width: 100,
-    height: 100,
-    ctx: null
+    imgElmn: null,
+    width: 0,
+    height: 0,
+    ctx: null,
+    uploadImg: null,
   };
+  allColorsHex:Array<{color:string, count:number}>=[];
 
   constructor() { }
 
   ngOnInit() {
-    this.imgCanvas.img = document.querySelector(".js-canvas-upload")as HTMLElement;
+    this.imgCanvas.imgElmn = document.querySelector(".js-canvas-upload")as HTMLElement;
   }
 
   selectImg(){
@@ -36,8 +37,8 @@ export class IconDetailComponent implements OnInit {
   }
 
   preview(files) {
-    this.imgCanvas.ctx = this.imgCanvas.img.getContext("2d");
-    let uploadImg = new Image();
+    this.imgCanvas.ctx = this.imgCanvas.imgElmn.getContext("2d");
+    this.imgCanvas.uploadImg = new Image();
 
     if (files.length===0){
       return;
@@ -48,13 +49,20 @@ export class IconDetailComponent implements OnInit {
 
     reader.onload = (_event) => {
       this.imgUrl = reader.result;
-      uploadImg.src=this.imgUrl;
-      uploadImg.crossOrigin = '';
+      this.imgCanvas.uploadImg.src=this.imgUrl;
+      this.imgCanvas.uploadImg.crossOrigin = '';
 
-      uploadImg.onload = ()=>{
-        this.imgCanvas.width = uploadImg.width;
-        this.imgCanvas.height = uploadImg.height;
-        setTimeout(()=>{this.imgCanvas.ctx.drawImage(uploadImg, 0, 0);}, 100);
+      this.imgCanvas.uploadImg.onload = (event)=>{
+        if( 300 < this.imgCanvas.uploadImg.width){
+          let scaleFactor = 300 / this.imgCanvas.uploadImg.width;
+          this.imgCanvas.width = 300;
+          this.imgCanvas.height = this.imgCanvas.uploadImg.height * scaleFactor;
+        }else{
+          this.imgCanvas.width = this.imgCanvas.uploadImg.width;
+          this.imgCanvas.height = this.imgCanvas.uploadImg.height;
+        }
+        
+        setTimeout(()=>{this.imgCanvas.ctx.drawImage(this.imgCanvas.uploadImg, 0, 0, this.imgCanvas.width, this.imgCanvas.height)}, 10);
       }
     }
   }
@@ -64,7 +72,7 @@ export class IconDetailComponent implements OnInit {
   }
 
   colorStraw(event) {
-    let rect = this.imgCanvas.img.getBoundingClientRect();
+    let rect = this.imgCanvas.imgElmn.getBoundingClientRect();
 
     let x = event.clientX - rect.left;
     let y = event.clientY - rect.top;
@@ -81,6 +89,52 @@ export class IconDetailComponent implements OnInit {
   toHex(c) {
     var hex = c.toString(16);
     return hex.length == 1 ? "0" + hex : hex;
+  }
+
+// Make the canvas img be smaller, and translate Image Data be hex color
+  getHexColors(){
+    let newCanvas = document.createElement('canvas');
+    let scaleFactor = 10 / this.imgCanvas.width;
+    let height = this.imgCanvas.height * scaleFactor;
+    let analysis:Array<{color:string, count:number}>=[];
+    
+    let ctx = newCanvas.getContext("2d");
+    ctx.drawImage(this.imgCanvas.uploadImg, 0, 0, 10, height);
+
+    let rawArray = Array.prototype.slice.call(ctx.getImageData(0, 0, 10, height).data);
+    let hexArray = []
+
+    for(let i=0; i<rawArray.length; i+=4){
+      let rgb = rawArray.splice(i, 4);
+      let hex = "#" + this.toHex(rgb[0])+this.toHex(rgb[1])+this.toHex(rgb[2]);
+      hexArray.push(hex);
+    }
+
+    for(let i=0; i<hexArray.length; i++){
+      let index = analysis.findIndex(element =>  element.color === hexArray[i]);
+      
+      if(index !== -1){
+        analysis[index].count++;
+      }else{
+        let obj = {
+          color: hexArray[i],
+          count: 1
+        }
+        analysis.push(obj);
+      }
+    }
+    this.cutColorsArray(analysis)
+  }
+  cutColorsArray(arr){
+    arr.sort(function (a, b) {
+      return b.count - a.count;
+    }).length = 6;
+
+    let sum = 0;
+    arr.forEach(color => sum += color.count );
+     
+    arr.map(color=>color.count = Math.round(color.count/sum*100));
+    this.allColorsHex = arr;
   }
 
 }

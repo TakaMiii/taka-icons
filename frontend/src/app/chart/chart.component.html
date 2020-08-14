@@ -27,9 +27,10 @@
       </div>
     </div>
 
-    <div class="fb-login-btn-container" [style.display]="isLogin?'none':'flex'">
-      <div class="fb-login-button" (onlogin)="getUserInfo()" data-size="large" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" data-width=""></div>
+    <div class="fb-login-btn-container" *ngIf="!isLogin">
+      <button nz-button nzSize="large" (click)="signIn()">
+        <i nz-icon nzType="facebook" nzTheme="fill"></i>使用Facebook帳號登入
+      </button>
     </div>
   </div>
 </div>
-

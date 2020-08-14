@@ -22,13 +22,14 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { IconDefinition } from '@ant-design/icons-angular';
 import { NzIconModule, NZ_ICONS} from 'ng-zorro-antd/icon';
-import { LogoutOutline, DragOutline } from '@ant-design/icons-angular/icons';
+import { LogoutOutline, DragOutline, FacebookFill } from '@ant-design/icons-angular/icons';
 import { AppRoutingModule } from './app-routing.module';
 import { AboutMeComponent } from './about-me/about-me.component';
+import { ColorAnalysisComponent } from './color-analysis/color-analysis.component';
 
 
 registerLocaleData(zh);
-const icons: IconDefinition[] = [ LogoutOutline, DragOutline ];
+const icons: IconDefinition[] = [ LogoutOutline, DragOutline, FacebookFill ];
 
 const config = new AuthServiceConfig([
   {
@@ -48,7 +49,8 @@ export function provideConfig() {
     NavComponent,
     IconDetailComponent,
     ChartComponent,
-    AboutMeComponent
+    AboutMeComponent,
+    ColorAnalysisComponent
   ],
   imports: [
     BrowserModule,

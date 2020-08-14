@@ -23,9 +23,15 @@ export class FacebookLoginService {
   	  }
   	)
   }
-  // signOut(): void {
-  //   this.authService.signOut();
-  // }
+
+  signIn(): Observable<any> {
+    console.log("step2:", FacebookLoginProvider.PROVIDER_ID);
+    return new Observable(
+      observer=>{
+        this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+      }
+    )
+  }
 
   signOut(): Observable<any> {
   	return new Observable(
