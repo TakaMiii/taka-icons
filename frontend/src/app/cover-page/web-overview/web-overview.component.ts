@@ -25,6 +25,7 @@ import { debounceTime, distinctUntilChanged, filter, map, switchMap } from 'rxjs
   ],
 })
 
+
 export class WebOverviewComponent implements OnInit {
   skew:boolean=false;
   contents = [
@@ -38,7 +39,7 @@ export class WebOverviewComponent implements OnInit {
     }
   ]
 
-  scroll = fromEvent(window, 'scroll').pipe(
+  scroll = fromEvent(document, 'scroll').pipe(
     map(() => {}, debounceTime(500)),
   );
 
@@ -46,9 +47,9 @@ export class WebOverviewComponent implements OnInit {
   constructor(private elementRef: ElementRef) { }
 
   ngOnInit() {
-  	this. scroll.subscribe(() => {
-       this.skew = true;
-       setTimeout(()=>{this.stopSkew()}, 1000);
+  	this.scroll.subscribe(() => {
+      this.skew = true;
+      setTimeout(()=>{this.stopSkew()}, 1000);
     });
   }
 
