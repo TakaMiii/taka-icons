@@ -34,7 +34,7 @@ const icons: IconDefinition[] = [ LogoutOutline, DragOutline, FacebookFill ];
 const config = new AuthServiceConfig([
   {
     id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider('2714054852029779')
+    provider: new FacebookLoginProvider('631985037718547')
   }
 ]);
 
