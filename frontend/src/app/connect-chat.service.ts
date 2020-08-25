@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from './../environments/environment';
 
+console.log(environment.socketUrl);
+
 @Injectable({
   providedIn: 'root'
 })
@@ -9,7 +11,6 @@ export class ConnectChatService {
 
   constructor() { }
 
-  // private chatSocket:WebSocket = new WebSocket('ws://127.0.0.1:8000/ws/chat/');
   private chatSocket:WebSocket = new WebSocket(environment.socketUrl);
 
   wsFaction(): Observable<any>{

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  socketUrl: 'ws://taka-icon.dandelion-and-cat.com/ws/chat/'
+  socketUrl: 'wss://taka-icon.dandelion-and-cat.com/ws/chat/'
 };
