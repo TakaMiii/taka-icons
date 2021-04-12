@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="450px" height="450px" viewBox="0 0 450 450" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>grassland</title>
+    <g id="grassland" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="land" transform="translate(41.000000, 119.367647)" stroke="#000000" stroke-width="4">
+            <path d="M0,11.1323529 C95.3333333,11.7990196 202.166667,30.7990196 320.5,68.1323529" id="Path-11"></path>
+            <path d="M0,60.1323529 C0,60.1323529 180.5,80.6323529 370.5,210.132353" id="Path-11" transform="translate(185.250000, 135.132353) scale(-1, 1) translate(-185.250000, -135.132353) "></path>
+            <path d="M61.5,14.1323529 C123.5,3.79901961 226.666667,-0.867647059 371,0.132352941" id="Path-12"></path>
+        </g>
+        <path d="M192.5,259.5 L192.5,264.5 M202.5,259.5 L202.5,264.5" id="g" stroke="#000000" stroke-width="4"></path>
+        <path d="M282.5,309.5 L282.5,314.5 M292.5,309.5 L292.5,314.5" id="g" stroke="#000000" stroke-width="4"></path>
+        <path d="M383.5,289.5 L383.5,294.5 M393.5,289.5 L393.5,294.5" id="g" stroke="#000000" stroke-width="4"></path>
+        <path d="M322.5,229.5 L322.5,234.5 M332.5,229.5 L332.5,234.5" id="g" stroke="#000000" stroke-width="4"></path>
+        <path d="M62.5,159.5 L62.5,164.5 M72.5,159.5 L72.5,164.5" id="g" stroke="#000000" stroke-width="4"></path>
+        <path d="M122.5,209.5 L122.5,214.5 M132.5,209.5 L132.5,214.5" id="g" stroke="#000000" stroke-width="4"></path>
+        <path d="M182.5,169.5 L182.5,174.5 M192.5,169.5 L192.5,174.5" id="g" stroke="#000000" stroke-width="4"></path>
+        <path d="M273.5,133.5 L273.5,138.5 M283.5,133.5 L283.5,138.5" id="g" stroke="#000000" stroke-width="4"></path>
+        <path d="M352.5,159.5 L352.5,164.5 M362.5,159.5 L362.5,164.5" id="g" stroke="#000000" stroke-width="4"></path>
+    </g>
+</svg>
