@@ -33,9 +33,14 @@ export class TakaIconComponent implements OnInit {
 
   bindColorToEl(){
     let svgPath = document.getElementsByClassName("js-icon-path");
-
+    let svgShape = document.getElementsByClassName("js-icon-shape");
+    
     for(let i=0; i<svgPath.length; i++) {
-      (svgPath[i]as HTMLElement).setAttribute("stroke", `${ this.stroke }`)
+      (svgPath[i]as HTMLElement).setAttribute("stroke", `${ this.stroke }`);
+    }
+
+    for(let i=0; i<svgShape.length; i++) {
+      (svgShape[i]as HTMLElement).setAttribute("fill", `${ this.stroke }`);
     }
   }
 
@@ -50,5 +55,4 @@ export class TakaIconComponent implements OnInit {
   	element.click();
   	element.remove();
   }
-
 }

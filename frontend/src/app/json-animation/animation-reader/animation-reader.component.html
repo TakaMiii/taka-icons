@@ -1,0 +1,42 @@
+<div class="content-container">
+  <input type="file"
+    id="uploading-json-input"
+    name="uploading-json-input"
+    accept="json"
+    class="hide"
+    (change)="getPath($event.target.files)">
+  <button nz-button type="button" (click)="selectImg()">Upload</button>
+
+  <div nz-row [nzGutter]="16" class="content">
+    <div nz-col nzSpan="8" class="gutter-row" *ngIf="lottieConfig.path">
+      <div class="lottie-container">
+        <lottie-animation-view
+          [options]="lottieConfig"
+          [width]="200"
+          [height]="300"
+          (animCreated)="handleAnimation($event)">
+        </lottie-animation-view>
+      </div>
+    </div>
+
+    <div nz-col nzSpan="8" class="gutter-row overflow-hide">
+      <div @in class="lottie-container" *ngIf="newlottieConfig.path">
+        <lottie-animation-view
+          [options]="newlottieConfig"
+          [width]="200"
+          [height]="300"
+          (animCreated)="handleAnimation($event)">
+        </lottie-animation-view>
+      </div>
+    </div>
+
+    <div nz-col nzSpan="8" class="gutter-row">
+      <app-color-controller
+      *ngIf="lottieConfig.path"
+      [jsonFileColors]="animationColors"
+      (changeColors)="updateColors($event)"
+      class="space-horizontal2">
+      </app-color-controller>
+    </div>
+  </div>
+</div>

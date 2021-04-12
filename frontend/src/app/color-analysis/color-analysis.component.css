@@ -5,3 +5,8 @@
 	display: flex;
 	justify-content: flex-start;
 }
+
+.crosshair{
+	cursor: crosshair;
+}
+

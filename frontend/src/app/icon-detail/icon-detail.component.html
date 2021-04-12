@@ -1,6 +1,7 @@
-<div class="icon-detail content-container">
+<div class="content-container flex-between">
   <div>
   	<form action="">
+      <p>上傳圖片，讓icon套用圖片中的顏色</p>
   	  <input type="file"
   	    id="uploading-img-input"
   	    name="uploading-img-input"
@@ -19,11 +20,11 @@
 
   <div class="icon-container">
     <div class="icon-tool-bar">
-      <input nz-input placeholder="HEX" [(ngModel)]="hexValue" />
+      <input nz-input placeholder="HEX" [(ngModel)]="colorStrawService.hexValue" />
       <button nz-button nzType="default" (click)="downloadImg()">Download</button>
     </div>
     <div class="svg-icon">
-      <app-taka-icon [stroke]="hexValue"></app-taka-icon>
+      <app-taka-icon [stroke]="colorStrawService.hexValue"></app-taka-icon>
     </div>
   </div>
 </div>

@@ -1,6 +1,13 @@
 import { animation, trigger, animateChild, group, transition, animate, style, query, } from '@angular/animations';
 
-export const slideInAnimation =
+export const slideInAnimation = animation([
+  style({
+    transform: '{{translateX}}',
+  }),
+  animate('{{ time }}  ease-in')
+]);
+
+export const slideInNav =
 trigger('routeAnimations', [
   transition('IconsList => IconPage', [
   	style({ position: 'relative' }),

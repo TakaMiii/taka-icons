@@ -1,11 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { IconService } from './icon.service';
 
-describe('IconService', () => {
+import { ColorStrawService } from './color-straw.service';
+
+describe('ColorStrawService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: IconService = TestBed.get(IconService);
+    const service: ColorStrawService = TestBed.get(ColorStrawService);
     expect(service).toBeTruthy();
   });
 });

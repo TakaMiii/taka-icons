@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { TakaIconComponent } from '../svg-icons/taka-icon/taka-icon.component';
+import { ColorConversionService } from '../color-conversion.service';
+import { ColorStrawService } from './color-straw.service';
 
 @Component({
   selector: 'app-icon-detail',
@@ -15,7 +17,6 @@ export class IconDetailComponent implements OnInit {
     name: 'mountain',
   }
   imgUrl;
-  hexValue:string='#000000';
   imgCanvas={
     imgElmn: null,
     width: 0,
@@ -25,7 +26,7 @@ export class IconDetailComponent implements OnInit {
   };
   allColorsHex:Array<{color:string, count:number}>=[];
 
-  constructor() { }
+  constructor(private colorConversion:ColorConversionService, public colorStrawService:ColorStrawService) { }
 
   ngOnInit() {
     this.imgCanvas.imgElmn = document.querySelector(".js-canvas-upload")as HTMLElement;
@@ -71,24 +72,8 @@ export class IconDetailComponent implements OnInit {
     this.iconComponent.downloadSvg();
   }
 
-  colorStraw(event) {
-    let rect = this.imgCanvas.imgElmn.getBoundingClientRect();
-
-    let x = event.clientX - rect.left;
-    let y = event.clientY - rect.top;
-
-
-    let imgData = this.imgCanvas.ctx.getImageData(x, y, 1, 1).data;
-
-    let r = this.toHex(imgData[0]);
-    let g = this.toHex(imgData[1]);
-    let b = this.toHex(imgData[2]);
-    this.hexValue = "#" + r + g + b;
-  }
-
-  toHex(c) {
-    var hex = c.toString(16);
-    return hex.length == 1 ? "0" + hex : hex;
+  colorStraw(e) {
+    this.colorStrawService.colorStraw(e, this.imgCanvas);
   }
 
 // Make the canvas img be smaller, and translate Image Data be hex color
@@ -106,7 +91,7 @@ export class IconDetailComponent implements OnInit {
 
     for(let i=0; i<rawArray.length; i+=4){
       let rgb = rawArray.splice(i, 4);
-      let hex = "#" + this.toHex(rgb[0])+this.toHex(rgb[1])+this.toHex(rgb[2]);
+      let hex = "#" + this.colorConversion.rgbToHex(rgb[0])+this.colorConversion.rgbToHex(rgb[1])+this.colorConversion.rgbToHex(rgb[2]);
       hexArray.push(hex);
     }
 

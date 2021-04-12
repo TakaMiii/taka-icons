@@ -1,0 +1,17 @@
+<h2>Colors Conversion</h2>
+<div>
+  <div *ngFor="let color of jsonFileColors; let i=index" class="color-item space-vertical1">
+    <div class="raw-color">
+      <div [style.background]="color.color" class="color-mark"></div>
+      <p>{{ color.color }}</p>
+    </div>
+    <div class="flex-between">
+    	<div [style.background]="newColors[i]" class="color-mark"></div>
+    	<div>
+    		<input nz-input maxlength="7"
+    		#newcolor placeholder="HEX" (keyup)="setNewColor(newcolor.value, i)"/>
+    	</div>
+    </div>
+  </div>
+</div>
+<button nz-button type="button" class="change-btn space-vertical1" (click)="change()">Change</button>

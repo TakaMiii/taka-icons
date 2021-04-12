@@ -9,7 +9,11 @@
 }
 
 body {
-  overflow-x: hidden; 
+  overflow-x: hidden;
+}
+
+p {
+  font-family: 'Noto Sans TC', sans-serif;
 }
 
 a {
@@ -26,8 +30,35 @@ ul, li {
 	display: none;
 }
 
+.overflow-hide {
+  overflow: hidden;
+}
+
+/* Space of elements */
+.space-verticale1 {
+  margin: 1em 0;
+}
+
+.space-horizontal1 {
+  margin: 0 1em;
+}
+
+.space-horizontal2 {
+  margin: 0 4em;
+}
+
 .route-content {
   margin-right: calc(100% - 100vw);;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .content-container {

@@ -1,0 +1,25 @@
+.color-item {
+	border-bottom: 1px solid var(--frame-color);
+	padding: 2em 0;
+}
+
+.color-item:nth-last-child(1) {
+	border-bottom: 0px solid;
+}
+
+.raw-color {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.color-mark {
+	margin-right: 20px;
+	width: 25px;
+	height: 25px;
+	border: 1px solid var(--frame-color);
+	border-radius: 50%;
+}
+
+.change-btn {
+	float: right;
+}

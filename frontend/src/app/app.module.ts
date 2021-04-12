@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SvgIconsModule } from './svg-icons/svg-icons.module';
 import { CoverPageModule } from './cover-page/cover-page.module';
+import { JsonAnimationModule } from './json-animation/json-animation.module';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -26,7 +27,6 @@ import { LogoutOutline, DragOutline, FacebookFill } from '@ant-design/icons-angu
 import { AppRoutingModule } from './app-routing.module';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { ColorAnalysisComponent } from './color-analysis/color-analysis.component';
-
 
 registerLocaleData(zh);
 const icons: IconDefinition[] = [ LogoutOutline, DragOutline, FacebookFill ];
@@ -54,6 +54,7 @@ export function provideConfig() {
   ],
   imports: [
     BrowserModule,
+    JsonAnimationModule,
     NgZorroAntdModule,
     FormsModule,
     HttpClientModule,
